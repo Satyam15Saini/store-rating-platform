@@ -43,13 +43,15 @@ export const register = async (req: AuthenticatedRequest, res: Response) => {
 
     return res.status(201).json({
       success: true,
-      token,
-      user: {
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        role: newUser.role,
-        address: newUser.address,
+      data: {
+        token,
+        user: {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          role: newUser.role,
+          address: newUser.address,
+        },
       },
     });
   } catch (error: any) {
@@ -74,13 +76,19 @@ export const login = async (req: AuthenticatedRequest, res: Response) => {
       },
     });
 
+    console.log(`[DEBUG LOGIN] Found User in DB:`, user ? `Name: "${user.name}", Role: "${user.role}", Hash: "${user.password}"` : 'null');
+
     if (!user) {
+      console.log(`[DEBUG LOGIN] User lookup failed for: ${email.trim().toLowerCase()}`);
       return res.status(400).json({ success: false, errors: ['Invalid email or password.'] });
     }
 
     // Verify password
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log(`[DEBUG LOGIN] Bcrypt comparison evaluated to: ${isPasswordValid}`);
+
     if (!isPasswordValid) {
+      console.log(`[DEBUG LOGIN] Bcrypt comparison failed!`);
       return res.status(400).json({ success: false, errors: ['Invalid email or password.'] });
     }
 
@@ -93,14 +101,16 @@ export const login = async (req: AuthenticatedRequest, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        address: user.address,
-        storeId: user.store?.id || null, // Handy for Store Owner frontend navigation
+      data: {
+        token,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          address: user.address,
+          storeId: user.store?.id || null, // Handy for Store Owner frontend navigation
+        },
       },
     });
   } catch (error: any) {
