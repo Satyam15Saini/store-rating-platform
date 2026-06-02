@@ -23,7 +23,7 @@ async function main() {
       name: 'Administrator Account Executive', // 32 characters (Min 20)
       email: 'admin.account@example.com',
       password: adminPassword,
-      address: 'System Headquarters Main Office, Suite 500, New York, NY 10001',
+      address: 'Plot No. 12, Tech Park Boulevard, Sector 62, Noida, Uttar Pradesh 201301',
       role: 'ADMIN',
     },
   });
@@ -32,10 +32,10 @@ async function main() {
   console.log('Seeding Normal User...');
   const normalUser = await prisma.user.create({
     data: {
-      name: 'Normal User Account Holder', // 27 characters (Min 20)
+      name: 'Aditya Vardhan Suryavanshi', // 26 characters (Min 20)
       email: 'normal.user@example.com',
       password: userPassword,
-      address: '123 Maple Street, Apartment 4B, Seattle, WA 98101',
+      address: 'Flat 402, Royal Residency, Senapati Bapat Road, Pune, Maharashtra 411016',
       role: 'USER',
     },
   });
@@ -44,19 +44,19 @@ async function main() {
   console.log('Seeding Starbucks Owner & Store...');
   const starbucksOwner = await prisma.user.create({
     data: {
-      name: 'Starbucks Coffee Owner Manager', // 30 characters
+      name: 'Rajesh Kumar Subramaniam', // 24 characters
       email: 'starbucks.owner@example.com',
       password: ownerPassword,
-      address: '2401 Utah Ave S, Seattle, WA 98134',
+      address: 'Ground Floor, 80 Feet Road, 4th Block, Koramangala, Bengaluru, Karnataka 560034',
       role: 'STORE_OWNER',
     },
   });
 
   const starbucksStore = await prisma.store.create({
     data: {
-      name: 'Starbucks Coffeehouse Seattle', // 29 characters
+      name: 'Starbucks Coffee Koramangala', // 28 characters
       email: 'starbucks.owner@example.com',
-      address: '2401 Utah Ave S, Seattle, WA 98134',
+      address: 'Ground Floor, 80 Feet Road, 4th Block, Koramangala, Bengaluru, Karnataka 560034',
       ownerId: starbucksOwner.id,
     },
   });
@@ -65,19 +65,19 @@ async function main() {
   console.log('Seeding Whole Foods Owner & Store...');
   const wholefoodsOwner = await prisma.user.create({
     data: {
-      name: 'Whole Foods Market Owner Director', // 34 characters
+      name: 'Meenakshi Iyer Krishnan', // 23 characters
       email: 'wholefoods.owner@example.com',
       password: ownerPassword,
-      address: '888 NE 4th St, Bellevue, WA 98004',
+      address: '12th Main Road, Indira Nagar, Bengaluru, Karnataka 560038',
       role: 'STORE_OWNER',
     },
   });
 
   const wholefoodsStore = await prisma.store.create({
     data: {
-      name: 'Whole Foods Market Bellevue', // 27 characters
+      name: 'Nature\'s Basket Indira Nagar', // 28 characters
       email: 'wholefoods.owner@example.com',
-      address: '888 NE 4th St, Bellevue, WA 98004',
+      address: '12th Main Road, Indira Nagar, Bengaluru, Karnataka 560038',
       ownerId: wholefoodsOwner.id,
     },
   });
@@ -86,19 +86,19 @@ async function main() {
   console.log('Seeding Alexander Montgomery Store...');
   const alexanderOwner = await prisma.user.create({
     data: {
-      name: 'Alexander Montgomery Owner Manager', // 35 characters
+      name: 'Vikramaditya Pratap Singh', // 25 characters
       email: 'alexander.owner@example.com',
       password: ownerPassword,
-      address: '555 Pine Street, Seattle, WA 98101',
+      address: 'Khan Market, Rabindra Nagar, New Delhi, Delhi 110003',
       role: 'STORE_OWNER',
     },
   });
 
   const alexanderStore = await prisma.store.create({
     data: {
-      name: 'Alexander Montgomery Store', // 26 characters
+      name: 'Fabindia Lifestyle Galleria', // 27 characters
       email: 'alexander.owner@example.com',
-      address: '555 Pine Street, Seattle, WA 98101',
+      address: 'Khan Market, Rabindra Nagar, New Delhi, Delhi 110003',
       ownerId: alexanderOwner.id,
     },
   });
